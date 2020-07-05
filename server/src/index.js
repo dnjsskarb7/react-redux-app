@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/auth-routes");
+const passportSetup = require("./config/passport-setup");
 
 require("dotenv").config();
 
@@ -30,6 +32,7 @@ app.use(
 
 app.use(express.json()); //Body parser for post request
 app.use("/posts", router);
+app.use("/auth", authRoutes);
 
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
