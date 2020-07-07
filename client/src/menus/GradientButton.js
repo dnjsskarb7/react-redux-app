@@ -17,7 +17,9 @@ const GradientButton = ({ app: { img, href, alt, colors, txt, name } }) => {
   return (
     <a href={href} className="btn login-btn" style={style} title={txt}>
       <img src={img} alt={alt} className="btn-icon" />
-      <span style={{ paddingLeft: "15px", verticalAlign: "top" }}>
+      <span
+        style={{ paddingLeft: "15px", verticalAlign: "top", color: "white" }}
+      >
         {name.toUpperCase()} Login
       </span>
     </a>

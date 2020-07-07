@@ -1,9 +1,7 @@
 import { combineReducers } from "redux";
-
+import authReducers from "./authReducers";
 const rootReducer = combineReducers({
-  replaceme: () => {
-    return 123;
-  },
+  auth: authReducers,
 });
 
 export default rootReducer;

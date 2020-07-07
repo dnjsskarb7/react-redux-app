@@ -9,7 +9,7 @@ const IconButton = ({ app: { img, href, alt, color, txt, name } }) => {
       title={txt}
     >
       <img src={img} style={{ height: "20px" }} alt={alt} />
-      <span className="btn-txt login-name">{name.toUpperCase()} Login</span>
+      <span style={{color:"white"}} className="btn-txt login-name">{name.toUpperCase()} Login</span>
     </a>
   );
 };

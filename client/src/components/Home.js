@@ -1,12 +1,39 @@
 import React from "react";
+import { connect } from "react-redux";
+import { fetchUser } from "../actions";
 import { Link } from "react-router-dom";
 import UserDropDown from "../menus/UserDropDown";
+import { changeAuth } from "../actions";
+
 class Home extends React.Component {
+  // componentDidMount() {
+  //   this.props.fetchUser();
+  // }
+
+  // renderDropDown() {
+  //   if (this.props.auth) {
+  //     return (
+  //       <button
+  //         onClick={() => {
+  //           this.props.changeAuth(true);
+  //           this.props.history.push("/");
+  //         }}
+  //         style={{ float: "right" }}
+  //       >
+  //         Sign out
+  //       </button>
+  //     );
+  //   } else {
+  //     return <UserDropDown />;
+  //   }
+  // }
+
   render() {
+    console.log("this");
+    console.log(this.props);
     return (
       <div>
-        <h1> This is Home! ❤</h1>
-        
+        {/* {this.renderDropDown()} */}
         <UserDropDown />
         <div className="page" style={{ textAlign: "center" }}>
           <p className="page-title">Simple OAuth with Node.js</p>
@@ -29,4 +56,10 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth,
+  };
+};
+
+export default connect(mapStateToProps, { fetchUser, changeAuth })(Home);

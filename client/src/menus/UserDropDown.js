@@ -45,13 +45,13 @@ const UserDropDown = (props) => {
         <ButtonList />
       </Menu>
 
-      <a href="/auth/google">
+      {/* <a href="/auth/google">
         <button className="ui google plus button">
           {" "}
           <i className="google icon"></i>
           Log In with Google
         </button>
-      </a>
+      </a> */}
     </div>
   );
 };
