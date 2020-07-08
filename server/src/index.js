@@ -3,11 +3,9 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const passportSetup = require("./config/passport-setup");
 
 const authRoutes = require("./routes/auth-routes");
-// const profileRoutes = require("./routes/profile-routes");
-const apiRoutes = require("./routes/api-Routes.js");
+const apiRoutes = require("./routes/api-routes.js");
 
 const cookieSession = require("cookie-session");
 const passport = require("passport");
@@ -49,9 +47,10 @@ app.use(
 );
 
 app.use(express.json()); //Body parser for post request
+app.use("/api", apiRoutes);
+
 app.use("/posts", router);
 app.use("/auth", authRoutes);
-app.use("/api", apiRoutes);
 
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);

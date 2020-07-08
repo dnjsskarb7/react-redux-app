@@ -24,3 +24,12 @@ export const authUser = () => async (dispatch) => {
     payload: request.data,
   });
 };
+
+export const handleToken = (token) => async (dispatch) => {
+  const response = await axios.post("/api/stripe");
+
+  dispatch({
+    type: AUTH_USER,
+    payload: response.data,
+  });
+};
