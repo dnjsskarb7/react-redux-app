@@ -1,27 +1,24 @@
 import React from "react";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
 import { Route, BrowserRouter } from "react-router-dom";
-import thunk from "redux-thunk";
-import rootReducer from "./reducers";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
+import Header from "./components/Header";
+import Landing from "./components/Landing";
+const Dashboard = () => <h2>Dashboard</h2>;
 
+const SurveyNew = () => <h2>SurveyNew</h2>;
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-const App = () => {
-  return (
-    <Provider store={store}>
+class App extends React.Component {
+  render() {
+    return (
       <BrowserRouter>
         <div className="ui container">
-          <Route path="/" exact component={Home} />
-          {/* <Route path="/auth/login" exact component={Auth} /> */}
-          <Route path="/profile" exact component={Profile} />
+          <Header />
+          <Route path="/" exact component={Landing} />
+          <Route path="/surveys" exact component={Dashboard} />
+          <Route path="/surveys/news" exact component={SurveyNew} />
         </div>
       </BrowserRouter>
-    </Provider>
-  );
-};
+    );
+  }
+}
 
 export default App;

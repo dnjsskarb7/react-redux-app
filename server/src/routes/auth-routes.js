@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-//auth login
-router.get("/login", (req, res) => {
-  res.send("login");
+//fetching from client
+router.get("/current_user", (req, res) => {
+  res.send(req.user);
 });
 
 //auth logout
@@ -20,7 +20,7 @@ router.get(
   })
 );
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("/profile");
+  res.redirect("/surveys");
 });
 
 module.exports = router;

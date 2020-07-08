@@ -12,7 +12,7 @@ passport.serializeUser((user, done) => {
 // browser sends the cookie back and received the id
 passport.deserializeUser((id, done) => {
   console.log("deserialized");
-   
+
   User.findById(id).then((user) => {
     done(null, user);
   });
@@ -37,10 +37,6 @@ passport.use(
         } else {
           // if not, create user in our db
           new User({
-            title: profile._json.name,
-            body: profile._json.given_name,
-            footer: profile._json.picture,
-            username: profile.displayName,
             googleId: profile.id,
           })
             .save()
