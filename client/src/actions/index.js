@@ -33,3 +33,10 @@ export const handleToken = (token) => async (dispatch) => {
     payload: response.data,
   });
 };
+
+export const changeUser = (isLoggedIn) => {
+  return {
+    type: CHANGE_AUTH,
+    payload: isLoggedIn,
+  };
+};

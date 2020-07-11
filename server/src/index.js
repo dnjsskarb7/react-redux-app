@@ -3,12 +3,12 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const mongoose = require("mongoose");
-
+const passport = require("passport");
+require("./config/passport-setup");
 const authRoutes = require("./routes/auth-routes");
 const apiRoutes = require("./routes/api-routes.js");
 
 const cookieSession = require("cookie-session");
-const passport = require("passport");
 require("dotenv").config();
 
 const middleware = require("./middleware");
@@ -45,7 +45,6 @@ app.use(
     origin: process.env.CORS_ORIGIN,
   })
 );
-
 app.use(express.json()); //Body parser for post request
 app.use("/api", apiRoutes);
 

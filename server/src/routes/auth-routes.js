@@ -1,5 +1,6 @@
-const router = require("express").Router();
 const passport = require("passport");
+
+const router = require("express").Router();
 
 //fetching from client
 router.get("/current_user", (req, res) => {
