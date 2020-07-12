@@ -17,7 +17,6 @@ export default (ChildComponent) => {
     }
 
     render() {
-      console.log(this.props.auth);
       return <ChildComponent {...this.props} />;
     }
   }

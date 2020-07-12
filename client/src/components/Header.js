@@ -1,54 +1,49 @@
 import React from "react";
-import { connect } from "react-redux";
-import { authUser } from "../actions";
 import { Link } from "react-router-dom";
-import UserDropDown from "../menus/UserDropDown";
-import Payment from "./Payment";
+import { connect } from "react-redux";
+import { changeAuth } from "../actions";
+
 class Header extends React.Component {
-  componentDidMount() {
-    this.props.authUser();
-  }
-  renderContent = () => {
-    switch (this.props.auth.isLogin) {
-      case null:
-        return;
-      case false:
-        return <UserDropDown />;
-
-      default:
-        return [
-          <div style={{ float: "right" }}>
-            <Payment />
-            Welcome {this.props.auth.isLogin.title}
-            <br />
-            <a style={{ color: "black" }} href="/auth/logout">
-              Log out
-            </a>
-          </div>,
-        ];
+  renderButton() {
+    if (this.props.auth === null) {
+      return;
+    } else if (this.props.auth === false) {
+      return (
+        <a href="/auth/google">
+          <button>Log in</button>
+        </a>
+      );
+    } else {
+      return (
+        <a href="/auth/logout">
+          <div>Hello {this.props.auth.givenName}</div>
+          <button>Log Out</button>
+        </a>
+      );
     }
-  };
-
-  render() {
+  }
+  renderHeader() {
     return (
-      <div>
-        <div style={{ float: "left" }}>
-          <Link to={this.props.auth.isLogin ? "/surveys" : "/"}>LogoHere</Link>
+      <div className="ui clearing segment">
+        <div className="ui left floated header">
+          <Link to="/">Home</Link>
+          <br />
+          <Link to="/posts">Post a Comment</Link>
+          <br />
+          <Link to="/posts/edit">Edit</Link>
         </div>
-        <div>{this.renderContent()}</div>
-        {/* <Terminal
-            userData={"passport.authenticate('facebook')"}
-            selected="All"
-          /> */}
+        <div className="ui right floated header"> {this.renderButton()}</div>
       </div>
     );
   }
-}
 
-const mapStateToProps = ({ auth }) => {
-  return {
-    auth,
-  };
+  render() {
+    console.log("AAAA", this.props.auth);
+    return <div>{this.renderHeader()}</div>;
+  }
+}
+const mapStateToProps = (state) => {
+  return { auth: state.auth };
 };
 
-export default connect(mapStateToProps, { authUser })(Header);
+export default connect(mapStateToProps)(Header);

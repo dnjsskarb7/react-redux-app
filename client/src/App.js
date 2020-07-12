@@ -1,24 +1,31 @@
 import React from "react";
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Header from "./components/Header";
-import Landing from "./components/Landing";
-import Dashboard from "./components/Dashboard";
-
-const SurveyNew = () => <h2>SurveyNew</h2>;
-
+import CommentList from "./components/CommentList";
+import CommentBox from "./components/CommentBox";
+import { fetchUser } from "./actions";
+import PostEdit from "./components/PostEdit";
 class App extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
   render() {
+    console.log(this.props);
     return (
-      <BrowserRouter>
-        <div className="ui container">
-          <Header />
-          <Route path="/" exact component={Landing} />
-          <Route path="/surveys" exact component={Dashboard} />
-          {/* <Route path="/surveys/news" exact component={SurveyNew} /> */}
-        </div>
-      </BrowserRouter>
+      <div className="ui container">
+        <Header />
+        <Route path="/" exact component={CommentList} />
+        <Route path="/posts" exact component={CommentBox} />
+        <Route path="/posts/edit" exact component={PostEdit} />
+      </div>
     );
   }
 }
+// const mapStateToProps = (state) => {
+//   return {
+//     auth: state.auth,
+//   };
+// };
 
-export default App;
+export default connect(null, { fetchUser })(App);

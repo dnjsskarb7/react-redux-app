@@ -4,17 +4,19 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    title: String,
-    body: String,
-    footer: String,
-    googleId: String,
-    username: String,
+    body: { type: String, unique: false },
+    footer: { type: String, unique: false },
+    googleId: { type: String, unique: false },
+    familyName: { type: String, unique: false },
+    givenName: { type: String, unique: false },
+    locale: { type: String, unique: false },
+    provider: { type: String, unique: false },
   },
   {
     timestamps: true,
   }
 );
 
-const User = mongoose.model("user", userSchema);
+const Users = mongoose.model("users", userSchema);
 
-module.exports = User;
+module.exports = Users;
