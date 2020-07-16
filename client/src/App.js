@@ -6,6 +6,24 @@ import CommentList from "./components/CommentList";
 import CommentBox from "./components/CommentBox";
 import { fetchUser } from "./actions";
 import PostEdit from "./components/PostEdit";
+import SurveyNew from "./components/surveys/SurveyNew";
+
+
+const Dashboard = () => {
+  return (
+    <div className="item">
+      <Link to="/surveys/new">
+        <button className="ui right floated button">
+          <i className="address book icon"></i>
+          Add
+        </button>
+      </Link>
+    </div>
+  );
+};
+
+
+
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -18,6 +36,8 @@ class App extends React.Component {
         <Route path="/" exact component={CommentList} />
         <Route path="/posts" exact component={CommentBox} />
         <Route path="/posts/edit" exact component={PostEdit} />
+        <Route path="/surveys" exact component={Dashboard} />
+        <Route path="/surveys/new" exact component={SurveyNew} />
       </div>
     );
   }
