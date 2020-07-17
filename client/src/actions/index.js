@@ -21,3 +21,12 @@ export const saveComment = (comment) => {
     payload: comment,
   };
 };
+
+export const submitSurveys = (values, history) => async (dispatch) => {
+  const res = await axios.post("/api/surveys", values);
+  history.push("/surveys");
+  dispatch({
+    type: "FETCH_USER",
+    payload: res.data,
+  });
+};
