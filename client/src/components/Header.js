@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { changeAuth } from "../actions";
-
+// import SurveyNew from "./surveys/SurveyNew";
 class Header extends React.Component {
   renderButton() {
     if (this.props.auth === null) {
